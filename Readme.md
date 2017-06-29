@@ -1,21 +1,13 @@
-============================********************************************========================================
-								Optimize Driving with toll on US 36
-============================********************************************========================================
-								BY: Vibhor Mishra and Prasanna Kumar
-################################################################################################################
-
-
-Project Description
+<b>Project Description</b>
 ______________________
 
-Suppose a user has to drive US 36 every single day either from Denver to Boulder or in the reverse direction. This utility provides the information of how much user can spend for reaching at a particular time.
+Suppose a user has to drive on US 36 every single day either from Denver to Boulder or vice-versa. This utility helps him to make a cost and time efficient decision to reach his destination. 
 
-Eg., a user might have to spend at most $1.50 to reach within 25 minutes, $1 to reach within 35 minutes, $0.50 to reach within 45 minutes. This output is presented in the form of graph plotted with Delay vs Cost of the journey.
+Ex: As per the output of this utility, user might have to spend at most $1.50 to reach within 25 minutes, $1 to reach within 35 minutes, $0.50 to reach within 45 minutes. This output is presented in the form of graph plotted with Delay vs Cost of the journey.
 
 The real time traffic conditions are scraped from http://cotrip.org/ about the delay on different segments(toll exits) of highway and using the toll information, the code optimizes and suggests users the segments they should take the toll lane and which segments they should drive on a regular lane.
 
-_______________________________________________________________________________________________________________________________________________________________________________________________
-
+________________________________________________________________________________________________________________________________________
 
 To run the code, one should have following python modules installed:
 1) matplotlib
@@ -28,19 +20,20 @@ Here is the flow of the program:
 
 1) user is asked to pick the source, destination and via-highway.
 2) the realtime traffic information is fetched from : http://www.cotrip.org/highways/ for the given source,destination and highway. The informaiton feteched is basically the delay time on different segments of the highway.
-3) Toll cost is statically stored as it's not required to be fetched each time the progrma is run.
+3) Toll cost is statically stored as it's not required to be fetched each time the program executes.
 4) using this real time info and toll cost of the express toll lane specific for each segment, we formaulate ILP and solve it using gurobi optimizer.
 5) we initialize the cost constraint with lowest toll cost of a segment and increment it by 2 in each iteration to get the plot of delay time vs cost.
-6) show the plot to user thourgh which he can make a better decision about tradeoff between cost and delay he want to incur on his travel.
+6) show the plot to user that helps him in making a better decision about tradeoff between cost and delay he want to incur to reach his destination.
 
 
 ILP formulation:
 -----------------
 
 Example : For "A" source to "D" destination, following is the real time information we fetch from cotrip.org:
+
 	Segment		   NormalTravelTime 	Delay		Toll
-==========================================================
-1) 'B to C' (s0) |		10mins		|	4mins	|	$4 
+============================================================================
+1) 'B to C' 	(s0) |		10mins		|	4mins	|	$4 
 2) 'C to D'	(s1) |		15min		|	2mins	|	$6
 3) 'E to F'	(s2) |		8mins		|	5mins	|	$8
 
@@ -66,8 +59,8 @@ while tollCost <= Maximum_Cost
 Plot cost_x and delay_y.
 
 
--------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 
 
 
